@@ -70,7 +70,7 @@ const run = async (): Promise<void> => {
       ]);
     const body = summary.stringify();
     await summary.write()
-    core.info(`✅ Summary2 created!`);
+    core.info(`✅ Summary created!`);
 
     if (github.context.eventName === 'pull_request') {
       const checkRequest: Endpoints['POST /repos/{owner}/{repo}/check-runs']['parameters'] = {
@@ -142,7 +142,7 @@ const run = async (): Promise<void> => {
         const commentResponse = await octokit.rest.issues.createComment({
           ...ownerRepo,
           issue_number: exists.number,
-          body: '✅ Spell styxxen check updated!'
+          body: '✅ Spell check updated!'
         })
         core.notice(`Comment created: ${commentResponse.data.html_url}`);
       } else {
