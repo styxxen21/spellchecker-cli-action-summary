@@ -9600,7 +9600,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
         ]);
         const body = summary.stringify();
         yield summary.write();
-        core.info(`✅ Summary2 created!`);
+        core.info(`✅ Summary created!`);
         if (github.context.eventName === 'pull_request') {
             const checkRequest = Object.assign(Object.assign({}, ownerRepo), { name: 'Spell Check Changed Files', head_sha: ((_b = github.context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.head.sha) || github.context.sha, status: 'completed', output: {
                     title: 'Spell check must pass',
@@ -9639,34 +9639,34 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
                 yield octokit.rest.checks.create(checkRequest);
             }
             core.info(`✅ Check 'Spell Check Changed Files' created!`);
-        }
-        else {
-            let exists;
-            try {
-                const q = `is:issue state:open repo:${github.context.repo.owner}/${github.context.repo.repo} label:"spell check"`;
-                const searchResponse = yield octokit.rest.search.issuesAndPullRequests({ q });
-                exists = searchResponse.data.items[0];
-            }
-            catch (error) {
-                core.info('No open issue found');
-            }
-            let issueResponse;
-            const issueContent = {
-                title: 'Spell Check',
-                labels: ['spell check'],
-                body
-            };
-            if (exists) {
-                issueResponse = yield octokit.rest.issues.update(Object.assign(Object.assign(Object.assign({}, ownerRepo), { issue_number: exists.number }), issueContent));
-                core.notice(`Issue updated: ${issueResponse.data.html_url}`);
-                const commentResponse = yield octokit.rest.issues.createComment(Object.assign(Object.assign({}, ownerRepo), { issue_number: exists.number, body: '✅ Spell check styxxen updated!' }));
-                core.notice(`Comment created: ${commentResponse.data.html_url}`);
-            }
-            else {
-                issueResponse = yield octokit.rest.issues.create(Object.assign(Object.assign({}, ownerRepo), issueContent));
-                core.notice(`Issue created: ${issueResponse.data.html_url}`);
-            }
-        }
+        // }
+        // else {
+        //     let exists;
+        //     try {
+        //         const q = `is:issue state:open repo:${github.context.repo.owner}/${github.context.repo.repo} label:"spell check"`;
+        //         const searchResponse = yield octokit.rest.search.issuesAndPullRequests({ q });
+        //         exists = searchResponse.data.items[0];
+        //     }
+        //     catch (error) {
+        //         core.info('No open issue found');
+        //     }
+        //     let issueResponse;
+        //     const issueContent = {
+        //         title: 'Spell Check',
+        //         labels: ['spell check'],
+        //         body
+        //     };
+        //     if (exists) {
+        //         issueResponse = yield octokit.rest.issues.update(Object.assign(Object.assign(Object.assign({}, ownerRepo), { issue_number: exists.number }), issueContent));
+        //         core.notice(`Issue updated: ${issueResponse.data.html_url}`);
+        //         const commentResponse = yield octokit.rest.issues.createComment(Object.assign(Object.assign({}, ownerRepo), { issue_number: exists.number, body: '✅ Spell check styxxen updated!' }));
+        //         core.notice(`Comment created: ${commentResponse.data.html_url}`);
+        //     }
+        //     else {
+        //         issueResponse = yield octokit.rest.issues.create(Object.assign(Object.assign({}, ownerRepo), issueContent));
+        //         core.notice(`Issue created: ${issueResponse.data.html_url}`);
+        //     }
+        // }
     }
     catch (error) {
         core.startGroup(error instanceof Error ? error.message : JSON.stringify(error));
