@@ -9600,7 +9600,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
         ]);
         const body = summary.stringify();
         yield summary.write();
-        core.info(`✅ Summary created!`);
+        core.info(`✅ Summary2 created!`);
         if (github.context.eventName === 'pull_request') {
             const checkRequest = Object.assign(Object.assign({}, ownerRepo), { name: 'Spell Check Changed Files', head_sha: ((_b = github.context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.head.sha) || github.context.sha, status: 'completed', output: {
                     title: 'Spell check must pass',
@@ -9659,7 +9659,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
             if (exists) {
                 issueResponse = yield octokit.rest.issues.update(Object.assign(Object.assign(Object.assign({}, ownerRepo), { issue_number: exists.number }), issueContent));
                 core.notice(`Issue updated: ${issueResponse.data.html_url}`);
-                const commentResponse = yield octokit.rest.issues.createComment(Object.assign(Object.assign({}, ownerRepo), { issue_number: exists.number, body: '✅ Spell check updated!' }));
+                const commentResponse = yield octokit.rest.issues.createComment(Object.assign(Object.assign({}, ownerRepo), { issue_number: exists.number, body: '✅ Spell check styxxen updated!' }));
                 core.notice(`Comment created: ${commentResponse.data.html_url}`);
             }
             else {
