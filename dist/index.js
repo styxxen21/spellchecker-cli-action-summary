@@ -9639,7 +9639,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
                 yield octokit.rest.checks.create(checkRequest);
             }
             core.info(`✅ Check 'Spell Check Changed Files' created!`);
-        // }
+        }
         // else {
         //     let exists;
         //     try {
