@@ -70,7 +70,7 @@ const run = async (): Promise<void> => {
       ]);
     const body = summary.stringify();
     await summary.write()
-    core.info(`✅ Summary created!`);
+    core.info(`✅ Summary2 created!`);
 
     if (github.context.eventName === 'pull_request') {
       const checkRequest: Endpoints['POST /repos/{owner}/{repo}/check-runs']['parameters'] = {
