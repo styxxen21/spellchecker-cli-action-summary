@@ -72,11 +72,11 @@ const run = async (): Promise<void> => {
     await summary.write()
     core.info(`✅ Summary created!`);
 
-    if (github.context.eventName === 'pull_request_target') {
+    if (github.context.eventName === 'pull_request') {
       const checkRequest: Endpoints['POST /repos/{owner}/{repo}/check-runs']['parameters'] = {
         ...ownerRepo,
         name: 'Spell Check Changed Files',
-        head_sha: github.context.payload.pull_request_target?.head.sha || github.context.sha,
+        head_sha: github.context.payload.pull_request?.head.sha || github.context.sha,
         status: 'completed',
         output: {
           title: 'Spell check must pass',
